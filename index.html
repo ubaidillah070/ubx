@@ -19,12 +19,9 @@
         return window.location.pathname;  // Gets the path part of the URL
     }
 
-    // Function to check if the path contains a random string
+    // Function to check if the path starts with a non-empty string
     function hasRandomString(path) {
-        // Replace this with your logic to check for a random string pattern
-        // For example, checking if the path matches a specific format
-        // This is a simplified example:
-        return path.length > 1; // Check if the path length is greater than 1 (assuming random string)
+        return path.startsWith('/') && path.length > 1; // Check if path starts with '/' and has length greater than 1
     }
 
     // Function to perform redirection based on country and random string
