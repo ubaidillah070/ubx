@@ -19,9 +19,11 @@
         return window.location.pathname;  // Gets the path part of the URL
     }
 
-    // Function to check if the path starts with a non-empty string
+    // Function to check if the path contains a random string (customize this as per your random string pattern)
     function hasRandomString(path) {
-        return path.startsWith('/') && path.length > 1; // Check if path starts with '/' and has length greater than 1
+        // Example: Check if path matches a pattern of random string (customize this according to your needs)
+        // In this example, we assume random string follows a specific pattern after '/'
+        return /\/[a-zA-Z0-9]{10}/.test(path);  // Change regex pattern as per your random string format
     }
 
     // Function to perform redirection based on country and random string
@@ -37,6 +39,9 @@
             } else {
                 window.location.href = 'https://cdefecf.partnermatch.link/s/22edadef06445?track=JOKOSEMUJUNG&subsource=Sk9LT1NFTVVKVU5HLEVTLDE4NS4xODguNjEuNDUsV0VCLFRSQUZFRQ';
             }
+        } else {
+            // Handle case when random string is not present
+            console.log('No random string detected. Not redirecting based on location.');
         }
     }
 
